@@ -1,25 +1,18 @@
-dist: trusty
-sudo: false
 language: node_js
+
 node_js:
-  - "10"
-branches:
-  only:
-    - master
-notifications:
-  email: false
-cache:
-  directories:
-    - ./node_modules
-install:
+  - 14
+
+before_script:
   - npm install
+
 before_deploy:
-  - npm run build
-  - cp dist/AirPur-Front/index.html dist/AirPur-Front/404.html
+  - npm run build:prod
+
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: dist/AirPur-Front
+  local_dir: dist/airpur
   on:
     branch: master
