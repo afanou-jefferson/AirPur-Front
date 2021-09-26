@@ -9,14 +9,12 @@ branches:
 before_script:
   - npm install -g @angular/cli
 script:
-  - ng lint
-  - npm run test-headless
   - ng build --prod --base-href https://github.com/afanou-jefferson/AirPur-Front
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   local_dir: dist/travis-demo
-   target_branch: gh-pages
+  target_branch: gh-pages
   on:
     branch: master
