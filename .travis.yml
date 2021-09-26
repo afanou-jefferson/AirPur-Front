@@ -1,15 +1,27 @@
+dist: trusty
+sudo: false
 language: node_js
 node_js:
   - "10"
-dist: trusty
-sudo: required
 branches:
   only:
-  - master
-before_script:
-  - npm install -g @angular/cli
-script:
-  - ng build --prod --base-href https://github.com/afanou-jefferson/AirPur-Front
+    - master
+notifications:
+  email: false
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+cache:
+  directories:
+    - ./node_modules
+install:
+  - npm install
+before_deploy:
+  - npm run build
+  - cp dist/AirPur-Front/index.html dist/AirPur-Front/404.html
 deploy:
   provider: pages
   skip_cleanup: true

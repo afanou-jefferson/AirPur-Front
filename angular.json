@@ -77,7 +77,8 @@
                     "configurations": {
                             "production": {
                                 "browserTarget": "airpur:build:production"
-                            }
+                            },
+                            "baseHref": "https://afanou-jefferson.github.io/AirPur-Front/"
                         }
                     },
                     "extract-i18n": {
