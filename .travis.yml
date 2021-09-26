@@ -1,14 +1,15 @@
 language: node_js
-
 node_js:
-  - 14
-
+  - "10"
+dist: trusty
+sudo: required
+branches:
+  only:
+  - master
 before_script:
-  - npm install
-
-before_deploy:
-  - npm run build:prod
-
+  - npm install -g @angular/cli
+script:
+  - ng build --prod --base-href https://github.com/afanou-jefferson/AirPur-Front
 deploy:
   provider: pages
   skip_cleanup: true
