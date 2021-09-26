@@ -1,4 +1,4 @@
-    language: node_js
+language: node_js
 node_js:
   - "10"
 dist: trusty
@@ -13,16 +13,10 @@ script:
   - npm run test-headless
   - ng build --prod --base-href https://github.com/afanou-jefferson/AirPur-Front
 deploy:
-   # Use Github pages deploy process
   provider: pages
-   # Keep builded pages
   skip_cleanup: true
-    # Github security/auth token
   github_token: $GITHUB_TOKEN
-    # Directory where your generated files are located
   local_dir: dist/travis-demo
-   # Git branch on which it should deploy (master, gh-pages, foo...)
    target_branch: gh-pages
-    # Which branch on commit/push will trigger deployment
   on:
     branch: master
