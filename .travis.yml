@@ -9,7 +9,7 @@ branches:
 before_script:
   - npm install -g @angular/cli
 script:
-  - ng build --prod --base-href https://github.com/afanou-jefferson/AirPur-Front
+  - ng build --prod --base-href https://afanou-jefferson.github.io/AirPur-Front/
 deploy:
   provider: pages
   skip_cleanup: true
