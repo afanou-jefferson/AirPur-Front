@@ -21,11 +21,11 @@ export class ListeRelevesComponent implements OnInit {
     name: string;
     connected : boolean;
     noDataMeteo: boolean = true;
-    
+
 
 
     constructor(private mapService: MapService, public dialog: MatDialog, public authServ: AuthService) {
-        
+
     }
 
     ngOnInit() {
@@ -34,9 +34,8 @@ export class ListeRelevesComponent implements OnInit {
 
       this.authServ.utilisateurConnecteObs.subscribe(
         utilisateurConnected => {
-          console.log("ICIIIII ", utilisateurConnected)
             if(!utilisateurConnected.estAnonyme()) {
-              console.log("IL N EST PAS ANONYME ", utilisateurConnected)
+              //console.debug("IL N EST PAS ANONYME ", utilisateurConnected)
                 this.connected = true;
             }
         },
@@ -49,7 +48,7 @@ export class ListeRelevesComponent implements OnInit {
     subscribeToPolluant() {
       this.mapService.onPolluant().subscribe(
         relevesPolluants => this.relevesPolluants = relevesPolluants,
-        error => console.log("erreur ", error)
+        error => console.debug("erreur ", error)
       )
     }
 
@@ -58,26 +57,26 @@ export class ListeRelevesComponent implements OnInit {
         relevesMeteo => { this.relevesMeteo = new MeteoIndicateur(relevesMeteo);
                           this.noDataMeteo = false;
                       },
-        error => { console.log("erreur ", error) , this.noDataMeteo = true }
+        error => { console.debug("erreur ", error) , this.noDataMeteo = true }
       )
     }
 
     openFavoris() {
       const dialogRef = this.dialog.open(CreateComponent);
-  
+
       // On créer ci-dessus une modale qu'on affiche ci dessous
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
+      dialogRef.afterClosed().subscribe(result =>{
+        console.debug(`Dialog result: ${result}`);
       });
     }
 
     openHistorique() {
       const dialogRef = this.dialog.open(HistoriqueComponent ,
                                           { width: '70%'});
-          
+
       dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
+        console.debug(`Dialog result: ${result}`);
       });
     }
-  
+
 }

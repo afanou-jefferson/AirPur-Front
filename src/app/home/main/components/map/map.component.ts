@@ -3,10 +3,10 @@ import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Router } from '@angular/router';
 import { Observable, of, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { AuthService } from '../../profil/auth/core/auth.service';
-import { CommuneInsee } from '../core/CommuneInsee.model';
-import { MapService } from '../core/map.service';
-import { Station } from "../core/station.model";
+import { AuthService } from '../../../profil/auth/core/auth.service';
+import { CommuneInsee } from '../../core/CommuneInsee.model';
+import { MapService } from '../../core/map.service';
+import { Station } from "../../core/station.model";
 
 @Component({
     selector: 'app-map',
@@ -46,7 +46,7 @@ export class MapComponent implements OnInit {
         )
     }
 
-    // ----------INIT ----------------- // 
+    // ----------INIT ----------------- //
     ngOnInit() {
         this.addMarker().subscribe(
             markersOn => {
@@ -60,7 +60,7 @@ export class MapComponent implements OnInit {
                             color: 'white',
                             idStation: station.id,
                             idCommune: station.communeId,
-                            nomCommune: station.nomCommune      
+                            nomCommune: station.nomCommune
                         },
                         title: 'Station pollution'
                     })
@@ -75,7 +75,7 @@ export class MapComponent implements OnInit {
             console.log("Reception Commubne coté MAP")
             this.communeSelected = data;
             this.centrerCamOnSearch();
-            this.myZoom = 11; 
+            this.myZoom = 11;
         });
     }
 
@@ -83,7 +83,7 @@ export class MapComponent implements OnInit {
         this.subscription.unsubscribe();
     }
 
-    // ---------- METHODES  ----------------- // 
+    // ---------- METHODES  ----------------- //
 
     click(event: google.maps.MapMouseEvent) {
         console.log(event)
@@ -114,9 +114,9 @@ export class MapComponent implements OnInit {
         localStorage.setItem("commune", commune);
 
         this.router.navigate(['map/listeReleve']);
-        
+
         //this.infoWindow.open(marker);
-      
+
     }
 
     getPolluantAndEmit(marker: MapMarker) {
@@ -151,6 +151,6 @@ export class MapComponent implements OnInit {
         this.myCenter = {
             lat:  this.communeSelected.centre.coordinates[1],
             lng: this.communeSelected.centre.coordinates[0]
-          } 
+          }
     }
 }

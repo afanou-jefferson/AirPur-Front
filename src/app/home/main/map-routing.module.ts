@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreateComponent } from './components/create/create.component';
 import { HistoriqueComponent } from './components/historique/historique.component';
 import { ListeRelevesComponent } from './components/listeReleve/listeReleve.component';
-import { MapComponent } from './components/map.component';
+import { MapComponent } from './components/map/map.component';
 
 const routes : Routes = [
   {
