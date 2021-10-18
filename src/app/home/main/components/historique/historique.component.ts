@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/home/profil/auth/core/auth.service';
-import { Commune } from '../../core/commune.model';
-import { MapService } from '../../core/map.service';
-import { MeteoIndicateur } from '../../core/meteoindicateur.model';
-import { RelevePolluant } from '../../core/relevePolluant.model';
+import { Commune } from '../../models/commune.model';
+import { MapService } from '../../models/map.service';
+import { MeteoIndicateur } from '../../models/meteoindicateur.model';
+import { RelevePolluant } from '../../models/relevePolluant.model';
 
 
 @Component({

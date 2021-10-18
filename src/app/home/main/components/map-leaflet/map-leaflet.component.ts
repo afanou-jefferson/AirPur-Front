@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../../../profil/auth/core/auth.service';
-import { MapService } from '../../core/map.service';
-import { Station } from "../../core/station.model";
+import { MapService } from '../../models/map.service';
+import { Station } from "../../models/station.model";
 
 @Component({
     selector: 'map-leaflet',

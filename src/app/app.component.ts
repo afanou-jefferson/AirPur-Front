@@ -1,14 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './home/profil/auth/core/auth.service';
-import { MapService } from './home/main/core/map.service';
+import { MapService } from './home/main/models/map.service';
 
 import {FormControl} from '@angular/forms';
 
 import { debounceTime, tap, switchMap, finalize, filter, share, delay } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
-import { CommuneInsee } from './home/main/core/CommuneInsee.model';
+import { CommuneInsee } from './home/main/models/CommuneInsee.model';
 
 import { Utilisateur } from './home/profil/auth/core/auth.domain';
 import { NotificationService } from './home/notification/core/notification.service';
@@ -20,10 +20,10 @@ import { NotificationService } from './home/notification/core/notification.servi
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  
+
   title = 'airpur';
   connected : boolean = false;
-  
+
   //SearchBar
   searchedCommune: FormControl = new FormControl();
   filteredCommunes : any;
@@ -75,8 +75,8 @@ export class AppComponent implements OnInit{
         return typeof value == "string"
       } // Retourne uniquement les valeurs qui sont des chaines de caractères. Quand l'user tape, value = string, quand il a choisi, value = commune object
       ), // Quand c'est string ca passe, quand c'est objet ca passe pas
-      
-      switchMap(value => this.mapServ.searchCommunes(value) 
+
+      switchMap(value => this.mapServ.searchCommunes(value)
       .pipe(
           finalize(() => {
             this.isLoading = false
@@ -111,7 +111,7 @@ export class AppComponent implements OnInit{
   displayFn(subject) {
     return subject ? subject.nomCommune : undefined;
   }
- 
+
   /**
    * Va chercher les coordonées Géo de la commune selectionée par l'USER et les envois au composant MAP pour centrer la caméra dessus
    */
@@ -119,7 +119,7 @@ export class AppComponent implements OnInit{
   this.mapServ.getCoordGeoCommunesByCodeInsee(codeInsee)
     .subscribe( communeInsee => {console.log(communeInsee.centre);
                                   this.communeSelected = communeInsee;
-                                  this.envoyerCommuneSearched(this.communeSelected);                  
+                                  this.envoyerCommuneSearched(this.communeSelected);
       }
   );
  }
@@ -129,7 +129,7 @@ export class AppComponent implements OnInit{
    this.mapServ.publierSearchedCommune(commune);
    console.log('Envoi Commune coté App');
  }
-  
+
 
  openNotification() {
    this.notificationService.openHistorique()

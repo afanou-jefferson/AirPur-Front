@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Departement } from '../../main/core/departement.model';
+import { Departement } from '../../main/models/departement.model';
 import { DepartementListe } from '../core/departementsListe.model';
 import { NotificationService } from '../core/notification.service';
 
@@ -15,7 +15,7 @@ export class NotificationComponent implements OnInit{
     selectedValue = null;
     constructor(fb: FormBuilder, private notificationService: NotificationService) {
         this.formulaireNotification = fb.group({
-            message: [], 
+            message: [],
             departement: []
           });
     }

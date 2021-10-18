@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/cor
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { MeteoIndicateur } from 'src/app/home/main/core/meteoindicateur.model';
+import { MeteoIndicateur } from 'src/app/home/main/models/meteoindicateur.model';
 import { FavorisAffichage } from '../../compte/core/favoris.model';
 import { FavorisService } from '../../compte/core/favoris.service';
 
@@ -18,7 +18,7 @@ export class FavorisComponent implements OnInit, AfterViewInit  {
     meteos: MeteoIndicateur[] = [];
     @Input() source;
     dataSource: MatTableDataSource<FavorisAffichage> = new MatTableDataSource([]);
-   
+
     dataSource2: MatTableDataSource<MeteoIndicateur> = new MatTableDataSource([]);
     displayedColumnsMeteo: string[] = ['id', 'date', 'vitesseMoyVent', 'cumulPluie', 'temperatureSol'];
     displayedColumnsPolluant: string[] = ['id', 'dateDebut', 'dateFin', 'nom', 'valeur'];
@@ -38,12 +38,12 @@ export class FavorisComponent implements OnInit, AfterViewInit  {
             error => console.log(error)
         );
     }
-    
-    ngOnInit() { 
-        
+
+    ngOnInit() {
+
     }
 
     ngAfterViewInit() {
-        
+
     }
 }

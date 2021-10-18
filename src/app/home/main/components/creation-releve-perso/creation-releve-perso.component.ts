@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FavorisCreation } from '../../core/favorisCreation.model';
-import { FavorisService } from '../../core/favoris.service';
-import { MapService } from '../../core/map.service';
+import { FavorisCreation } from '../../models/favorisCreation.model';
+import { FavorisService } from '../../models/favoris.service';
+import { MapService } from '../../models/map.service';
 @Component({
     selector: 'creation-releve-perso',
     templateUrl: './creation-releve-perso.component.html',

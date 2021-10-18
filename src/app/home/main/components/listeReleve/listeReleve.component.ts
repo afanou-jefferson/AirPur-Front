@@ -1,8 +1,8 @@
 
 import { Component, Input, OnInit } from '@angular/core';
-import { MapService } from '../../core/map.service';
-import { MeteoIndicateur } from '../../core/meteoindicateur.model';
-import { RelevePolluant } from '../../core/relevePolluant.model';
+import { MapService } from '../../models/map.service';
+import { MeteoIndicateur } from '../../models/meteoindicateur.model';
+import { RelevePolluant } from '../../models/relevePolluant.model';
 import {MatDialog} from '@angular/material/dialog';
 import {CreationRelevePersoComponent} from '../create/creation-releve-perso.component';
 import { HistoriqueComponent } from '../historique/historique.component';

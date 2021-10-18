@@ -1,5 +1,5 @@
-import { MeteoIndicateur } from "src/app/home/main/core/meteoindicateur.model";
-import { RelevePolluant } from "src/app/home/main/core/relevePolluant.model";
+import { MeteoIndicateur } from "src/app/home/main/models/meteoindicateur.model";
+import { RelevePolluant } from "src/app/home/main/models/relevePolluant.model";
 
 export class FavorisAffichage {
     dtosMeteoIndicateurs: MeteoIndicateur;

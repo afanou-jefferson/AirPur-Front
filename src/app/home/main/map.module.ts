@@ -11,8 +11,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from 'node_modules/@angular/router';
 
-import { MapService } from "./core/map.service";
-import {FavorisService} from "./core/favoris.service";
+import { MapService } from "./models/map.service";
+import {FavorisService} from "./models/favoris.service";
 @NgModule({
     declarations: [
       ListeRelevesComponent,

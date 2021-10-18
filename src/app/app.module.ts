@@ -19,7 +19,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { MapService } from './home/main/core/map.service';
+import { MapService } from './home/main/models/map.service';
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
