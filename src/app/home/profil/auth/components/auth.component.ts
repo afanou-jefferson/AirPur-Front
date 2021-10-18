@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuService } from 'src/app/services/menu.service';
+import { MenuService } from 'src/app/home/profil/auth/core/menu.service';
 import { Utilisateur } from '../core/auth.domain';
 import { AuthService } from '../core/auth.service';
 
@@ -30,7 +30,7 @@ export class AuthComponent implements OnInit {
         // en cas d'erreur, affichage d'un message d'erreur
         err => this.err = true
       );
-      
+
       this.authSrv.utilisateurConnecteObs.subscribe(
         success => this.router.navigate(['map']),
         echec => console.log(echec)

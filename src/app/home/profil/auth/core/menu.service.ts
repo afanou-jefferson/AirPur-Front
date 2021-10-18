@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Utilisateur } from '../home/profil/auth/core/auth.domain';
+import { Utilisateur } from './auth.domain';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,7 @@ import { Utilisateur } from '../home/profil/auth/core/auth.domain';
 export class MenuService {
 
   constructor() { }
- 
+
   recupererRoleUtilisateur(utilisateur : Utilisateur) : string {
     let valuePrecedent: number = 0;
     let valueActuelle = 0;
@@ -19,9 +19,9 @@ export class MenuService {
       if(valueActuelle > valuePrecedent) {
         valuePrecedent = valueActuelle;
       }
-    
-    
-      
+
+
+
     switch ( valuePrecedent ){
       case 2 :
         roleFinal = "admin";
@@ -31,7 +31,7 @@ export class MenuService {
         roleFinal = "utilisateur";
         break;
     }
-      
+
     });
 
     //localStorage.setItem("roleUtilisateur", roleFinal);

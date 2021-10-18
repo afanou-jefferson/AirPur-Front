@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { MapRoutingModule } from "./map-routing.module"
 import { GoogleMapsModule } from '@angular/google-maps';
-import { CreationRelevePersoComponent } from "./components/create/creation-releve-perso.component";
+import { CreationRelevePersoComponent } from "./components/creation-releve-perso/creation-releve-perso.component";
 import { HistoriqueComponent } from "./components/historique/historique.component";
 import { ListeRelevesComponent } from "./components/listeReleve/listeReleve.component";
 import { MapLeafletComponent } from './components/map-leaflet/map-leaflet.component';

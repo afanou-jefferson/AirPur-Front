@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './home/profil/auth/components/auth.component';
 import { AuthService } from './home/profil/auth/core/auth.service';
-import { MenuService } from './services/menu.service';
+import { MenuService } from './home/profil/auth/core/menu.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';

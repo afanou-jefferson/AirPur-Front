@@ -4,7 +4,7 @@ import { MapService } from '../../models/map.service';
 import { MeteoIndicateur } from '../../models/meteoindicateur.model';
 import { RelevePolluant } from '../../models/relevePolluant.model';
 import {MatDialog} from '@angular/material/dialog';
-import {CreationRelevePersoComponent} from '../create/creation-releve-perso.component';
+import {CreationRelevePersoComponent} from '../creation-releve-perso/creation-releve-perso.component';
 import { HistoriqueComponent } from '../historique/historique.component';
 import { AuthService } from 'src/app/home/profil/auth/core/auth.service';
 
