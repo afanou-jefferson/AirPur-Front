@@ -4,17 +4,18 @@ import { FavorisCreation } from '../../core/favorisCreation.model';
 import { FavorisService } from '../../core/favoris.service';
 import { MapService } from '../../core/map.service';
 @Component({
-    selector: 'app-auth',
-    templateUrl: './create.component.html',
-    styleUrls: ['./create.component.scss']
+    selector: 'creation-releve-perso',
+    templateUrl: './creation-releve-perso.component.html',
+    styleUrls: ['./creation-releve-perso.component.scss']
   })
-  export class CreateComponent implements OnInit {
+  export class CreationRelevePersoComponent implements OnInit {
+
     formulaireFavoris: FormGroup;
     favoris: FavorisCreation = new FavorisCreation();
 
     constructor(fb: FormBuilder, private mapService: MapService, private favorisService : FavorisService) {
       this.formulaireFavoris = fb.group({
-        indicateur: [], 
+        indicateur: [],
         dateDebut: [],
         departement: []
       });

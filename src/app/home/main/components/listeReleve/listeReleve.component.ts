@@ -4,12 +4,12 @@ import { MapService } from '../../core/map.service';
 import { MeteoIndicateur } from '../../core/meteoindicateur.model';
 import { RelevePolluant } from '../../core/relevePolluant.model';
 import {MatDialog} from '@angular/material/dialog';
-import {CreateComponent} from '../create/create.component';
+import {CreationRelevePersoComponent} from '../create/creation-releve-perso.component';
 import { HistoriqueComponent } from '../historique/historique.component';
 import { AuthService } from 'src/app/home/profil/auth/core/auth.service';
 
 @Component({
-    selector: 'app-auth',
+    selector: 'liste-releve',
     templateUrl: './listeReleve.component.html',
     styleUrls: ['./listeReleve.component.scss']
   })
@@ -62,7 +62,7 @@ export class ListeRelevesComponent implements OnInit {
     }
 
     openFavoris() {
-      const dialogRef = this.dialog.open(CreateComponent);
+      const dialogRef = this.dialog.open(CreationRelevePersoComponent);
 
       // On créer ci-dessus une modale qu'on affiche ci dessous
       dialogRef.afterClosed().subscribe(result =>{

@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from 'src/app/home/profil/auth/core/auth.service';
+import { Commune } from '../../core/commune.model';
+import { MapService } from '../../core/map.service';
 import { MeteoIndicateur } from '../../core/meteoindicateur.model';
 import { RelevePolluant } from '../../core/relevePolluant.model';
-import { MapService } from '../../core/map.service';
-import { MatDialog } from '@angular/material/dialog';
-import { CreateComponent } from '../create/create.component';
-import { AuthService } from 'src/app/home/profil/auth/core/auth.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Commune } from '../../core/commune.model';
+
 
 @Component({
-  selector: 'app-auth',
+  selector: 'historique-releve',
   templateUrl: './historique.component.html',
   styleUrls: ['./historique.component.scss']
 })
@@ -58,6 +57,6 @@ export class HistoriqueComponent implements OnInit {
       relevesPolluants => this.relevesPolluants = relevesPolluants,
       error => console.log("erreur ", error)
     )
-  } 
+  }
 
 }

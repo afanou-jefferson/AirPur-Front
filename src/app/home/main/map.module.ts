@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { MapRoutingModule } from "./map-routing.module"
 import { GoogleMapsModule } from '@angular/google-maps';
-import { CreateComponent } from "./components/create/create.component";
+import { CreationRelevePersoComponent } from "./components/create/creation-releve-perso.component";
 import { HistoriqueComponent } from "./components/historique/historique.component";
 import { ListeRelevesComponent } from "./components/listeReleve/listeReleve.component";
-import { MapComponent } from './components/map/map.component';
+import { MapLeafletComponent } from './components/map-leaflet/map-leaflet.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { FormsModule } from '@angular/forms';
@@ -16,9 +16,9 @@ import {FavorisService} from "./core/favoris.service";
 @NgModule({
     declarations: [
       ListeRelevesComponent,
-      CreateComponent,
+      CreationRelevePersoComponent,
       HistoriqueComponent,
-      MapComponent
+      MapLeafletComponent
     ],
     imports: [
       CommonModule,

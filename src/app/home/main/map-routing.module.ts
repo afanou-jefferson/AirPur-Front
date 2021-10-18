@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
-import { CreateComponent } from './components/create/create.component';
+import { CreationRelevePersoComponent } from './components/create/creation-releve-perso.component';
 import { HistoriqueComponent } from './components/historique/historique.component';
 import { ListeRelevesComponent } from './components/listeReleve/listeReleve.component';
-import { MapComponent } from './components/map/map.component';
+import { MapLeafletComponent } from './components/map-leaflet/map-leaflet.component';
 
 const routes : Routes = [
   {
     path: '',
-    component: MapComponent,
+    component: MapLeafletComponent,
     children: [
       {
         path : 'listeReleve',
@@ -21,7 +21,7 @@ const routes : Routes = [
       },
       {
         path : 'create',
-        component : CreateComponent
+        component : CreationRelevePersoComponent
       },
       {
         path : '**',

@@ -1,20 +1,19 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Router } from '@angular/router';
-import { Observable, of, Subscription } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthService } from '../../../profil/auth/core/auth.service';
-import { CommuneInsee } from '../../core/CommuneInsee.model';
 import { MapService } from '../../core/map.service';
 import { Station } from "../../core/station.model";
 
 @Component({
-    selector: 'app-map',
-    templateUrl: './map.component.html',
-    styleUrls: ['./map.component.scss']
+    selector: 'map-leaflet',
+    templateUrl: './map-leaflet.component.html',
+    styleUrls: ['./map-leaflet.scss']
 })
 
-export class MapComponent implements OnInit {
+export class MapLeafletComponent implements OnInit {
 
     @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
 
