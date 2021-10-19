@@ -1,29 +1,20 @@
-import { NotificationComponent } from './home/notification/components/notification.component';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AuthComponent } from './home/profil/auth/components/auth.component';
-import { AuthService } from './home/profil/auth/core/auth.service';
-import { MenuService } from './home/profil/auth/core/menu.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FooterModule } from './core/footer/footer.module';
+import { MapService } from './map/models/map.service';
+import { AuthService } from './profil/auth/services/auth.service';
+import { MenuService } from './profil/auth/services/menu.service';
+import { NotificationComponent } from './profil/notification/components/notification.component';
 import { SharedModule } from './shared/shared.module';
-
-import { LegalModule } from './home/legal/legal.module';
-
-import { GoogleMapsModule } from '@angular/google-maps';
-
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
-import { MapService } from './home/main/models/map.service';
-
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
-
 
 //import { ConditionsGenComponent } from './home/legal/conditions-gen/conditions-gen.component';
 //import { ConfidentialiteComponent } from './home/legal/confidentialite/confidentialite.component';
@@ -33,12 +24,12 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 @NgModule({
   declarations: [
     AppComponent,
-   // AuthComponent,
-   // ConditionsGenComponent,
-   // ConfidentialiteComponent,
-   // AProposComponent,
-   // CookiesComponents
-    NotificationComponent
+    // AuthComponent,
+    // ConditionsGenComponent,
+    // ConfidentialiteComponent,
+    // AProposComponent,
+    // CookiesComponents
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,16 +41,12 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     NgbModule,
     SharedModule,
     GoogleMapsModule,
-    LegalModule,
+    FooterModule,
     FormsModule,
     MatAutocompleteModule,
   ],
-  providers: [
-    AuthService,
-    MenuService,
-    MapService
-  ],
+  providers: [AuthService, MenuService, MapService],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
