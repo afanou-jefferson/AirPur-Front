@@ -1,8 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterContentChecked,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 import { AuthService } from '../../../profil/auth/services/auth.service';
 import { MapService } from '../../models/map.service';
 import { Station } from '../../models/station.model';
@@ -82,6 +87,7 @@ export class MapLeafletComponent implements OnInit {
         this.centrerCamOnSearch();
         this.myZoom = 11;
       });
+
   }
 
   ngOnDestroy() {
@@ -109,7 +115,8 @@ export class MapLeafletComponent implements OnInit {
 
   clicked: boolean = false;
 
-  clickMarker(marker: MapMarker, content) {
+  clickMarker(marker: MapMarker) {
+
     localStorage.removeItem('commune');
 
     this.getPolluantAndEmit(marker);
@@ -118,9 +125,8 @@ export class MapLeafletComponent implements OnInit {
     let commune = this.formatInfoCommuneToStorage(marker);
     localStorage.setItem('commune', commune);
 
-    this.router.navigate(['map/listeReleve']);
+    //this.router.navigate(['map/listeReleve']);
 
-    //this.infoWindow.open(marker);
   }
 
   getPolluantAndEmit(marker: MapMarker) {

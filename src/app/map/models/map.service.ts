@@ -12,92 +12,98 @@ import { share } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 
 @Injectable({
-    providedIn: 'root'
-  })
+  providedIn: 'root',
+})
 export class MapService {
-    
-    private polluantSubject = new Subject<RelevePolluant[]>();
-    private meteoSubject = new Subject<MeteoIndicateur>();
-    static communeSearchedSubj = new Subject<CommuneInsee>();  
-  
-    constructor(private http: HttpClient) {
-    }
+  private polluantSubject = new Subject<RelevePolluant[]>();
+  private meteoSubject = new Subject<MeteoIndicateur>();
+  static communeSearchedSubj = new Subject<CommuneInsee>();
 
-    getAllStation() : Observable<Station[]>{
-        return this.http.get<Station[]>(`${environment.baseUrl}${environment.getAllStations}`);  
+  constructor(private http: HttpClient) {}
 
-    }
-//    ----------------------------------  POLLUANT  ------------------------------------------------------------
-   getPolluantsByStation(idStation : number): Observable<RelevePolluant[]> {
-        return this.http.get<RelevePolluant[]>(`${environment.baseUrl}${environment.getStation}/${idStation}`);
-    }
+  getAllStation(): Observable<Station[]> {
+    return this.http.get<Station[]>(
+      `${environment.baseUrl}${environment.getAllStations}`
+    );
+  }
+  //    ----------------------------------  POLLUANT  ------------------------------------------------------------
+  getPolluantsByStation(idStation: number): Observable<RelevePolluant[]> {
+    return this.http.get<RelevePolluant[]>(
+      `${environment.baseUrl}${environment.getStation}/${idStation}`
+    );
+  }
 
-    getHistoriquePolluantStation(idStation : number, dateDebut : Date, dateFin : Date) : Observable<RelevePolluant[]> {
-        const params = new HttpParams()
-                            .set("idStation" , `${idStation}`)
-                            .set("dateDebut", `${dateDebut}`)
-                            .set("dateFin", `${dateFin}` ) 
+  getHistoriquePolluantStation(
+    idStation: number,
+    dateDebut: Date,
+    dateFin: Date
+  ): Observable<RelevePolluant[]> {
+    const params = new HttpParams()
+      .set('idStation', `${idStation}`)
+      .set('dateDebut', `${dateDebut}`)
+      .set('dateFin', `${dateFin}`);
 
-        return this.http.post<RelevePolluant[]>(`${environment.baseUrl}${environment.getHistoriqueStation}`,
-                                               {params} );
-    }
+    return this.http.post<RelevePolluant[]>(
+      `${environment.baseUrl}${environment.getHistoriqueStation}`,
+      { params }
+    );
+  }
 
-    emitPolluant(releve: RelevePolluant[]) {
-        this.polluantSubject.next(releve);
-    }
+  emitPolluant(releve: RelevePolluant[]) {
+    this.polluantSubject.next(releve);
+  }
 
-    clearPolluant() {
-        this.polluantSubject.next();
-    }
+  clearPolluant() {
+    this.polluantSubject.next();
+  }
 
-    onPolluant() : Observable<RelevePolluant[]>{
-        return this.polluantSubject.asObservable();
-    }
+  onPolluant(): Observable<RelevePolluant[]> {
+    return this.polluantSubject.asObservable();
+  }
 
+  //    ----------------------------------         METEO     ------------------------------------------------------------
 
+  getMeteoByCommune(idCommune: number): Observable<MeteoIndicateur> {
+    return this.http.get<MeteoIndicateur>(
+      `${environment.baseUrl}${environment.getMeteo}/${idCommune}`
+    );
+  }
 
-    //    ----------------------------------         METEO     ------------------------------------------------------------
+  emitMeteo(meteo: MeteoIndicateur) {
+    this.meteoSubject.next(meteo);
+  }
 
-    getMeteoByCommune(idCommune : number) : Observable<MeteoIndicateur> {
-        return this.http.get<MeteoIndicateur>(`${environment.baseUrl}${environment.getMeteo}/${idCommune}`);
-    }
+  onMeteo(): Observable<MeteoIndicateur> {
+    return this.meteoSubject.asObservable();
+  }
 
-    emitMeteo(meteo: MeteoIndicateur) {
-        this.meteoSubject.next(meteo);
-    }
+  clearMeteo() {
+    this.meteoSubject.next();
+  }
 
-    onMeteo() : Observable<MeteoIndicateur>{
-        return this.meteoSubject.asObservable();
-    }
+  searchCommunes(nomCommune: any): Observable<CommuneLight[]> {
+    return this.http.get<CommuneLight[]>(
+      `${environment.baseUrl}${environment.getCommuneALike}/${nomCommune}`
+    );
+  }
 
-    clearMeteo() {
-        this.meteoSubject.next();
-    }
+  getCoordGeoCommunesByCodeInsee(codeInseeCommune: string) {
+    return this.http.get<CommuneInsee>(
+      `https://geo.api.gouv.fr/communes/${codeInseeCommune}?fields=nom,code,codesPostaux,centre,codeDepartement,codeRegion,population&format=json&geometry=centre`
+    );
+  }
 
-    searchCommunes(nomCommune : any): Observable<CommuneLight[]> {
-        return this.http.get<CommuneLight[]>(`${environment.baseUrl}${environment.getCommuneALike}/${nomCommune}`)
-    }
+  //    ----------------------------------   SEARCH    ------------------------------------------------------------
+  changerCommuneSelected(commune: CommuneInsee) {
+    //this.communeSelectedSource.next("COUCOU MAP")
+    //console.log("Hey THERE", commune)
+  }
 
-    getCoordGeoCommunesByCodeInsee(codeInseeCommune: string){
-        return this.http.get<CommuneInsee>(`https://geo.api.gouv.fr/communes/${codeInseeCommune}?fields=nom,code,codesPostaux,centre,codeDepartement,codeRegion,population&format=json&geometry=centre`) 
-    }
+  publierSearchedCommune(commune: CommuneInsee) {
+    MapService.communeSearchedSubj.next(commune);
+  }
 
-    //    ----------------------------------   SEARCH    ------------------------------------------------------------
-    changerCommuneSelected(commune : CommuneInsee){
-        //this.communeSelectedSource.next("COUCOU MAP")
-        //console.log("Hey THERE", commune)
-    }
-
-    publierSearchedCommune(commune : CommuneInsee){
-        MapService.communeSearchedSubj.next(commune);
-    }
-
-    recupererSearchedCommune(): Observable<any> {
-        return MapService.communeSearchedSubj.pipe(
-            share()
-        );
-    }
-
-
+  recupererSearchedCommune(): Observable<any> {
+    return MapService.communeSearchedSubj.pipe(share());
+  }
 }
-
