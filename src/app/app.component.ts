@@ -8,33 +8,31 @@ import { AuthService } from './profil/auth/services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
   title = 'airpur';
   connected: boolean = false;
 
   userConnected: any;
 
   constructor(private authServ: AuthService) {
+  }
+
+  ngOnInit() {
+    // Au lancement de l'application
+    // check si l'utilisateur est en cache ou en bdd
+    //this.authServ.verifierAuthentification().subscribe();
+
     this.authServ.utilisateurConnecteObs.subscribe(
       (utilisateurConnected) => {
-        console.log('ICIIIII ', utilisateurConnected);
         if (!utilisateurConnected.estAnonyme()) {
-          console.log('IL N EST PAS ANONYME ', utilisateurConnected);
           this.connected = true;
           this.userConnected = JSON.parse(
             localStorage.getItem('utilisateur')
           ) as Utilisateur;
         }
       },
-      (utilisateurNotConnected) => {
-        console.log(utilisateurNotConnected);
+      (error) => {
+        console.log('error on auth', error);
       }
     );
-  }
-
-  ngOnInit() {
-    // Au lancement de l'application
-    // check si l'utilisateur est en cache ou en bdd
-    this.authServ.verifierAuthentification().subscribe();
   }
 }

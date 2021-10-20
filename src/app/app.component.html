@@ -1,5 +1,5 @@
 <app-navbar-public *ngIf="!connected"></app-navbar-public>
-<app-navbar-user **ngIf="connected"> </app-navbar-user>
+<app-navbar-user *ngIf="connected"> </app-navbar-user>
 
 <div id="content">
   <router-outlet></router-outlet>

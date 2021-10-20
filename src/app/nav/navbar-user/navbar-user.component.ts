@@ -2,7 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { debounceTime, tap, delay, filter, switchMap, finalize } from 'rxjs/operators';
+import {
+  debounceTime,
+  tap,
+  delay,
+  filter,
+  switchMap,
+  finalize,
+} from 'rxjs/operators';
 import { CommuneInsee } from 'src/app/map/models/CommuneInsee.model';
 import { MapService } from 'src/app/map/models/map.service';
 import { Utilisateur } from 'src/app/profil/auth/models/utilisateur.model';
@@ -15,7 +22,7 @@ import { NotificationService } from 'src/app/profil/notification/core/notificati
   styleUrls: ['./navbar-user.component.css'],
 })
 export class NavbarUserComponent implements OnInit {
-  title = 'airpur';
+  //title = 'airpur';
   connected: boolean = false;
 
   //SearchBar
@@ -33,28 +40,22 @@ export class NavbarUserComponent implements OnInit {
     private mapServ: MapService,
     private http: HttpClient,
     private notificationService: NotificationService
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.authServ.utilisateurConnecteObs.subscribe(
       (utilisateurConnected) => {
-        console.log('ICIIIII ', utilisateurConnected);
         if (!utilisateurConnected.estAnonyme()) {
-          console.log('IL N EST PAS ANONYME ', utilisateurConnected);
           this.connected = true;
           this.userConnected = JSON.parse(
             localStorage.getItem('utilisateur')
           ) as Utilisateur;
         }
       },
-      (utilisateurNoConnected) => {
-        console.log(utilisateurNoConnected);
+      (error) => {
+        console.log('Error user not connected', error);
       }
     );
-  }
-
-  ngOnInit() {
-    // Au lancement de l'application
-    // check si l'utilisateur est en cache ou en bdd
-    this.authServ.verifierAuthentification().subscribe();
 
     this.searchedCommune.valueChanges
       .pipe(
@@ -87,7 +88,6 @@ export class NavbarUserComponent implements OnInit {
         )
       )
       .subscribe((data) => {
-        // console.log(data);
         if (data == undefined) {
           this.errorMsg = data['Error'];
           this.filteredCommunes = [];
@@ -95,8 +95,6 @@ export class NavbarUserComponent implements OnInit {
           this.errorMsg = '';
           this.filteredCommunes = data;
         }
-
-        //console.log(this.filteredCommunes);
       });
   }
 

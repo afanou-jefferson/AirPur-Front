@@ -7,10 +7,11 @@ import { NavbarPublicComponent } from './navbar-public/navbar-public.component';
 import { NavbarUserComponent } from './navbar-user/navbar-user.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { NavRoutingModule } from './nav-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [NavbarUserComponent, NavbarPublicComponent],
-  imports: [CommonModule, NavRoutingModule, MatAutocompleteModule],
+  imports: [CommonModule, NavRoutingModule, MatAutocompleteModule, SharedModule],
   providers: [AuthService, MenuService, MapService],
   exports: [NavbarUserComponent, NavbarPublicComponent],
 })

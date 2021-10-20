@@ -21,7 +21,7 @@ export class AuthComponent implements OnInit {
 
   connecter() {
     // RAJOUTER LES CHECKER SUR LES PROPS ANGULAR MATERIEL
-    this.authSrv.connecter(this.utilisateur.email, this.utilisateur.motDePasse)
+    this.authSrv.seConnecter(this.utilisateur.email, this.utilisateur.motDePasse)
       .subscribe(
         // en cas de succès, redirection vers la page /d'acceuil
        col => {

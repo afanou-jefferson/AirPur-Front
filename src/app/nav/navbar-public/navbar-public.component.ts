@@ -2,7 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { debounceTime, tap, delay, filter, switchMap, finalize } from 'rxjs/operators';
+import {
+  debounceTime,
+  tap,
+  delay,
+  filter,
+  switchMap,
+  finalize,
+} from 'rxjs/operators';
 import { CommuneInsee } from 'src/app/map/models/CommuneInsee.model';
 import { MapService } from 'src/app/map/models/map.service';
 import { Utilisateur } from 'src/app/profil/auth/models/utilisateur.model';
@@ -12,12 +19,9 @@ import { NotificationService } from 'src/app/profil/notification/core/notificati
 @Component({
   selector: 'app-navbar-public',
   templateUrl: './navbar-public.component.html',
-  styleUrls: ['./navbar-public.component.css']
+  styleUrls: ['./navbar-public.component.css'],
 })
 export class NavbarPublicComponent implements OnInit {
-
-  connected: boolean = false;
-
   //SearchBar
   searchedCommune: FormControl = new FormControl();
   filteredCommunes: any;
@@ -25,36 +29,14 @@ export class NavbarPublicComponent implements OnInit {
   errorMsg: string;
   communeSelected: CommuneInsee;
 
-  userConnected: any;
-
   constructor(
     private authServ: AuthService,
     private router: Router,
     private mapServ: MapService,
     private notificationService: NotificationService
-  ) {
-    this.authServ.utilisateurConnecteObs.subscribe(
-      (utilisateurConnected) => {
-        console.log('ICIIIII ', utilisateurConnected);
-        if (!utilisateurConnected.estAnonyme()) {
-          console.log('IL N EST PAS ANONYME ', utilisateurConnected);
-          this.connected = true;
-          this.userConnected = JSON.parse(
-            localStorage.getItem('utilisateur')
-          ) as Utilisateur;
-        }
-      },
-      (utilisateurNoConnected) => {
-        console.log(utilisateurNoConnected);
-      }
-    );
-  }
+  ) {}
 
   ngOnInit() {
-    // Au lancement de l'application
-    // check si l'utilisateur est en cache ou en bdd
-    this.authServ.verifierAuthentification().subscribe();
-
     this.searchedCommune.valueChanges
       .pipe(
         debounceTime(200),
@@ -99,12 +81,6 @@ export class NavbarPublicComponent implements OnInit {
       });
   }
 
-  onLogoutClick() {
-    this.authServ.seDeconnecter();
-    this.router.navigate(['']);
-    this.connected = false;
-  }
-
   /**
    * Fonction qui permet de remplir le champs choixsi on click dans l'input
    */
@@ -129,9 +105,4 @@ export class NavbarPublicComponent implements OnInit {
     this.mapServ.publierSearchedCommune(commune);
     console.log('Envoi Commune coté App');
   }
-
-  openNotification() {
-    this.notificationService.openHistorique();
-  }
-
 }

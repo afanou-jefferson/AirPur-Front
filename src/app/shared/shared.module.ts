@@ -35,6 +35,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   imports: [
@@ -64,7 +65,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatExpansionModule,
     MatDialogModule,
     MatProgressBarModule,
-    MatRadioModule
+    MatRadioModule,
+    MatFormFieldModule
   ],
   declarations: [
   ],
@@ -98,7 +100,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatExpansionModule,
     MatDialogModule,
     MatRadioModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatFormFieldModule
   ]
 })
 export class SharedModule {}
