@@ -11,6 +11,9 @@ const routes: Routes = [
   { path: 'confidentialites', component: ConfidentialiteComponent },
   { path: 'aPropos', component: AProposComponent },
   { path: 'cookies', component: CookiesComponent },
+  { path: '**', redirectTo: 'conditionsGen' },
+  { path: '', redirectTo: 'conditionsGen', pathMatch: 'full' },
+
 ];
 
 @NgModule({

@@ -6,8 +6,8 @@ import { CompteComponent } from './compte/components/compte.component';
 import { InscriptionComponent } from './inscription/component/inscription.component';
 import { FavorisComponent } from './favoris/components/favoris.component';
 
-const routes : Routes = [ 
-   
+const routes : Routes = [
+
 
   { path: '', component: CompteComponent},
   { path: 'connexion', component: AuthComponent},
@@ -15,7 +15,7 @@ const routes : Routes = [
   { path: 'favoris', component: FavorisComponent},
   { path: 'moncompte', component: CompteComponent},
   { path: '**', redirectTo :''}
-  
+
 ];
 
 

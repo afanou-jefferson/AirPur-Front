@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: 'legal',
     loadChildren: () =>
-      import('./core/footer/footer.module').then((res) => res.FooterModule),
+      import('./footer/footer.module').then((res) => res.FooterModule),
   },
   {
     path: 'forum',
@@ -29,10 +29,6 @@ const routes: Routes = [
   { path: '**', redirectTo: 'map' },
   { path: '', redirectTo: 'map', pathMatch: 'full' },
 
-  //{ path: 'conditionsGen', component: ConditionsGenComponent},
-  //{ path: 'confidentialites', component: ConfidentialiteComponent},
-  //{ path: 'aPropos', component: AProposComponent},
-  ///{ path: 'cookies', component: CookiesComponent},
 ];
 
 @NgModule({
