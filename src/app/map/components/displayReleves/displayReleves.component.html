@@ -1,0 +1,105 @@
+<ng-container *ngIf="relevesPolluants.length != 0">
+  <mat-tab-group>
+    <mat-tab label="Pollution">
+      <mat-card class="example-card" style="height: 100%">
+        <mat-card-header>
+          <mat-card-title
+            >Station: {{ relevesPolluants[0].nomStation }}</mat-card-title
+          >
+          <mat-card-subtitle
+            >Commune: {{ relevesPolluants[0].nomCommune }}</mat-card-subtitle
+          >
+        </mat-card-header>
+        <mat-card-content>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Valeur</th>
+                <th scope="col">Date du relevé</th>
+                <!--     <th scope="col">Date fin</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container
+                *ngFor="let polluant of relevesPolluants; index as i"
+              >
+                <tr>
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ polluant.nom }}</td>
+                  <td>{{ polluant.valeur }}</td>
+                  <td>
+                    {{ polluant.dateDebut | date: "d MMM YYYY" }} à
+                    {{ polluant.dateDebut | date: "hh:mm" }}
+                  </td>
+                  <!--  <td>{{ polluant.dateFin | date:'d MMM YYYY' }} à {{ polluant.dateFin | date:'hh:mm' }}</td> -->
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button color="warn" (click)="openHistorique()">
+            Voir l'historique des relevés
+          </button>
+
+          <button
+            *ngIf="connected"
+            mat-stroked-button
+            color="warn"
+            (click)="openFavoris()"
+          >
+            Ajouter un favoris
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-tab>
+
+    <!-- ONGLET METEO -->
+    <mat-tab [disabled]="noDataMeteo" label="Météo">
+      <ng-container *ngIf="relevesMeteo != null">
+        <mat-card class="example-card" style="height: 100%">
+          <mat-card-header>
+            <mat-card-title
+              >Station: {{ relevesPolluants[0].nomStation }}</mat-card-title
+            >
+            <mat-card-subtitle
+              >Commune: {{ relevesPolluants[0].nomCommune }}</mat-card-subtitle
+            >
+          </mat-card-header>
+          <mat-card-content>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Temperature (°C)</th>
+                  <th scope="col">Cumul de pluie</th>
+                  <th scope="col">Vitesse Moyenne du vent</th>
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container>
+                  <tr>
+                    <td>{{ relevesMeteo.tempatureSol }}</td>
+                    <td>{{ relevesMeteo.cumulPluie }}</td>
+                    <td>{{ relevesMeteo.vitesseMoyVent }} km/h</td>
+                    <td>{{ relevesMeteo.date | date: "d MMM YYYY" }}</td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-stroked-button color="warn" (click)="openHistorique()">
+              Voir l'historique des relevés
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-container>
+    </mat-tab>
+
+
+
+  </mat-tab-group>
+</ng-container>

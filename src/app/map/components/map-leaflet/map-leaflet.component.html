@@ -1,43 +1,33 @@
 <!-- CARTE -->
 
-
 <div class="container-fluid" *ngIf="markerLoaded">
-        <div class="row">
-                <div class="col-7">
-                        <!-- FAIRE APPEL API -->
-                        <google-map height="675" width="100%" (mapClick)="click($event)" [center]="myCenter" [zoom]="myZoom">
-                                <map-marker
-                                        #marker
-                                        *ngFor="let marker of markers"
-                                        [position]="marker.position"
-                                        [label]="marker.label"
-                                        [title]="marker.title"
-                                        [options]="marker.options"
-                                        (mapClick)="clickMarker(marker)"
-                                >
-                                </map-marker>
-                        </google-map>
-                </div>
-                <div class="col-5">
-                        <!-- <button class="btn btn-primary" [routerLink]="['details']">Details</button>
-                        <button mat-raised-button color="primary" [routerLink]="['create']" *ngIf="connected">Create</button> -->
-                        <!-- <button mat-raised-button color="accent"  [routerLink]="['listeReleve']" *ngIf="connected">Liste</button> -->
-                        <liste-releve> </liste-releve>
-                </div>
-        </div>
+  <div class="row">
+    <div class="col-7">
+      <!-- FAIRE APPEL API -->
+      <google-map
+        height="675"
+        width="100%"
+        (mapClick)="click($event)"
+        [center]="myCenter"
+        [zoom]="myZoom"
+      >
+        <map-marker
+          #marker
+          *ngFor="let marker of markers"
+          [position]="marker.position"
+          [label]="marker.label"
+          [title]="marker.title"
+          [options]="marker.options"
+          (mapClick)="clickMarker(marker)"
+        >
+        </map-marker>
+      </google-map>
+    </div>
+    <div class="col-5">
+      <display-releves> </display-releves>
+    </div>
+  </div>
 </div>
 <div class="container" *ngIf="!markerLoaded">
-        <mat-spinner class="m-auto" color="warn" ></mat-spinner>
+  <mat-spinner class="m-auto" color="warn"></mat-spinner>
 </div>
-<!-- --------------------------------------------------------------------------------------------------------- -->
-
-<!-- CREER DES BOUTONS LIES AU ROUTER OUTLET -->
-
-<!-- --------------------------------------------------------------------------------------------------------- -->
-
-
-<!-- ROUTER GRACE A DES BOUTONS SUR
-        DETAIL
-        LISTE
-        CREATE -->
-

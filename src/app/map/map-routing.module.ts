@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreationRelevePersoComponent } from './components/creation-releve-perso/creation-releve-perso.component';
 import { HistoriqueComponent } from './components/historique/historique.component';
-import { ListeRelevesComponent } from './components/listeReleve/listeReleve.component';
+import { DisplayRelevesComponent } from './components/displayReleves/displayReleves.component';
 import { MapLeafletComponent } from './components/map-leaflet/map-leaflet.component';
 
 const routes : Routes = [
@@ -12,8 +12,8 @@ const routes : Routes = [
     component: MapLeafletComponent,
     children: [
       {
-        path : 'listeReleve',
-        component : ListeRelevesComponent
+        path : 'displayReleve',
+        component : DisplayRelevesComponent
       },
       {
         path : 'historique',
@@ -25,7 +25,7 @@ const routes : Routes = [
       },
       {
         path : '**',
-        redirectTo : 'listeReleve'
+        redirectTo : 'displayReleves'
       }
     ]
   },

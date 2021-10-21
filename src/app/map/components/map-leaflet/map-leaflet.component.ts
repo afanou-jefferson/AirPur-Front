@@ -1,13 +1,12 @@
 import {
-  AfterContentChecked,
   Component,
   OnInit,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { AuthService } from '../../../profil/auth/services/auth.service';
 import { MapService } from '../../models/map.service';
 import { Station } from '../../models/station.model';
@@ -124,8 +123,6 @@ export class MapLeafletComponent implements OnInit {
 
     let commune = this.formatInfoCommuneToStorage(marker);
     localStorage.setItem('commune', commune);
-
-    //this.router.navigate(['map/listeReleve']);
 
   }
 

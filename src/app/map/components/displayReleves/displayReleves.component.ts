@@ -8,15 +8,13 @@ import { HistoriqueComponent } from '../historique/historique.component';
 import { AuthService } from 'src/app/profil/auth/services/auth.service';
 
 @Component({
-  selector: 'liste-releve',
-  templateUrl: './listeReleve.component.html',
-  styleUrls: ['./listeReleve.component.scss'],
+  selector: 'display-releves',
+  templateUrl: './displayReleves.component.html',
+  styleUrls: ['./displayReleves.component.scss'],
 })
-export class ListeRelevesComponent implements OnInit {
+export class DisplayRelevesComponent implements OnInit {
   relevesPolluants: RelevePolluant[] = [];
   relevesMeteo: MeteoIndicateur;
-  displayedColumns: string[] = ['nom', 'valeur', 'dateDebut', 'dateFin'];
-  columnsToDisplay: string[] = this.displayedColumns.slice();
   name: string;
   connected: boolean;
   noDataMeteo: boolean = true;
@@ -28,8 +26,8 @@ export class ListeRelevesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.subscribeToPolluant();
     this.subscribeToMeteo();
+    this.subscribeToPolluant();
 
     this.authServ.utilisateurConnecteObs.subscribe(
       (utilisateurConnected) => {
@@ -38,13 +36,29 @@ export class ListeRelevesComponent implements OnInit {
         }
       },
       (utilisateurNoConnected) => {
-        console.log(utilisateurNoConnected);
+        console.debug(utilisateurNoConnected);
       }
     );
 
-    /**
-     * TRICKS ON INIT POUR AFFICHER MONTPELLIER PAR DEFAUT
-     */
+    this.goToMontpellierOnInit();
+  }
+
+  subscribeToMeteo() {
+    this.mapService.onMeteo().subscribe(
+      (relevesMeteo) => {
+        this.relevesMeteo = new MeteoIndicateur(relevesMeteo);
+        this.noDataMeteo = false;
+      },
+      (error) => {
+        console.debug('erreur ', error), (this.noDataMeteo = true);
+      }
+    );
+  }
+
+  /**
+   * TRICKS ON INIT POUR AFFICHER MONTPELLIER PAR DEFAUT
+   */
+  goToMontpellierOnInit(): void {
     this.mapService.getPolluantsByStation(33).subscribe(
       (releves) => {
         this.relevesPolluants = releves;
@@ -64,18 +78,6 @@ export class ListeRelevesComponent implements OnInit {
     this.mapService.onPolluant().subscribe(
       (relevesPolluants) => (this.relevesPolluants = relevesPolluants),
       (error) => console.debug('erreur ', error)
-    );
-  }
-
-  subscribeToMeteo() {
-    this.mapService.onMeteo().subscribe(
-      (relevesMeteo) => {
-        this.relevesMeteo = new MeteoIndicateur(relevesMeteo);
-        this.noDataMeteo = false;
-      },
-      (error) => {
-        console.debug('erreur ', error), (this.noDataMeteo = true);
-      }
     );
   }
 

@@ -15,6 +15,7 @@ import { HttpParams } from '@angular/common/http';
   providedIn: 'root',
 })
 export class MapService {
+
   private polluantSubject = new Subject<RelevePolluant[]>();
   private meteoSubject = new Subject<MeteoIndicateur>();
   static communeSearchedSubj = new Subject<CommuneInsee>();
